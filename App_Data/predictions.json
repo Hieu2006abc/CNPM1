@@ -1,0 +1,309 @@
+[
+  {
+    "Id": "ba1d8f32-838a-49be-956a-ec37ce5e94d4",
+    "Patient": {
+      "Id": "55404b5f-2a80-45b8-84d1-dca22f833070",
+      "FullName": "Nguy\u1EC5n Minh An",
+      "Age": 34,
+      "Gender": "Nam",
+      "CreatedAt": "2026-06-14T17:01:16.9162872+07:00"
+    },
+    "SystolicBloodPressure": 118,
+    "Cholesterol": 178,
+    "FastingBloodSugarHigh": false,
+    "EcgResult": "Normal",
+    "IsSmoker": false,
+    "ChestPainType": "None",
+    "MaxHeartRate": 156,
+    "ExerciseAngina": false,
+    "StDepression": 0.6,
+    "RiskProbability": 22,
+    "RiskLevel": 0,
+    "Recommendation": "Duy tr\u00EC l\u1ED1i s\u1ED1ng l\u00E0nh m\u1EA1nh v\u00E0 theo d\u00F5i s\u1EE9c kh\u1ECFe \u0111\u1ECBnh k\u1EF3.",
+    "InfluentialFactors": [
+      "Tu\u1ED5i tr\u1EBB",
+      "Huy\u1EBFt \u00E1p \u1ED5n \u0111\u1ECBnh"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-06-14T17:01:16.9168652+07:00"
+  },
+  {
+    "Id": "17bf5fde-7a63-4e77-bf81-51e7c547f483",
+    "Patient": {
+      "Id": "c7df302f-c86d-4256-8f25-afa6ae8c0c76",
+      "FullName": "Tr\u1EA7n Ho\u00E0i Thu",
+      "Age": 49,
+      "Gender": "N\u1EEF",
+      "CreatedAt": "2026-05-18T17:01:16.916921+07:00"
+    },
+    "SystolicBloodPressure": 138,
+    "Cholesterol": 224,
+    "FastingBloodSugarHigh": false,
+    "EcgResult": "STT Abnormality",
+    "IsSmoker": false,
+    "ChestPainType": "None",
+    "MaxHeartRate": 156,
+    "ExerciseAngina": false,
+    "StDepression": 0.6,
+    "RiskProbability": 54,
+    "RiskLevel": 1,
+    "Recommendation": "N\u00EAn ki\u1EC3m tra c\u00E1c ch\u1EC9 s\u1ED1 tim m\u1EA1ch \u0111\u1ECBnh k\u1EF3 v\u00E0 \u0111i\u1EC1u ch\u1EC9nh ch\u1EBF \u0111\u1ED9 sinh ho\u1EA1t.",
+    "InfluentialFactors": [
+      "Cholesterol t\u0103ng",
+      "ECG b\u1EA5t th\u01B0\u1EDDng ST-T"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-05-18T17:01:16.9169232+07:00"
+  },
+  {
+    "Id": "91a5605c-579e-44cd-b01c-06d573e20237",
+    "Patient": {
+      "Id": "b609088c-7250-4c3d-8298-155be8c77312",
+      "FullName": "L\u00EA Qu\u1ED1c B\u1EA3o",
+      "Age": 63,
+      "Gender": "Nam",
+      "CreatedAt": "2026-04-25T17:01:16.9169261+07:00"
+    },
+    "SystolicBloodPressure": 162,
+    "Cholesterol": 268,
+    "FastingBloodSugarHigh": true,
+    "EcgResult": "Left Ventricular Hypertrophy",
+    "IsSmoker": true,
+    "ChestPainType": "Asymptomatic",
+    "MaxHeartRate": 122,
+    "ExerciseAngina": true,
+    "StDepression": 2.2,
+    "RiskProbability": 84,
+    "RiskLevel": 2,
+    "Recommendation": "N\u00EAn th\u0103m kh\u00E1m chuy\u00EAn khoa tim m\u1EA1ch \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n v\u00E0 ch\u1EA9n \u0111o\u00E1n ch\u00EDnh x\u00E1c.",
+    "InfluentialFactors": [
+      "Tu\u1ED5i cao",
+      "Huy\u1EBFt \u00E1p cao",
+      "Cholesterol cao",
+      "H\u00FAt thu\u1ED1c"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-04-25T17:01:16.9169263+07:00"
+  },
+  {
+    "Id": "65ad25ef-b413-4870-a60c-d124cf38a95b",
+    "Patient": {
+      "Id": "45a2cdf3-1a3b-4042-b675-1ba4aadfb851",
+      "FullName": "Ph\u1EA1m Kh\u00E1nh Linh",
+      "Age": 41,
+      "Gender": "N\u1EEF",
+      "CreatedAt": "2026-05-30T17:01:16.9169307+07:00"
+    },
+    "SystolicBloodPressure": 126,
+    "Cholesterol": 202,
+    "FastingBloodSugarHigh": false,
+    "EcgResult": "Normal",
+    "IsSmoker": false,
+    "ChestPainType": "None",
+    "MaxHeartRate": 156,
+    "ExerciseAngina": false,
+    "StDepression": 0.6,
+    "RiskProbability": 36,
+    "RiskLevel": 0,
+    "Recommendation": "Duy tr\u00EC l\u1ED1i s\u1ED1ng l\u00E0nh m\u1EA1nh v\u00E0 theo d\u00F5i s\u1EE9c kh\u1ECFe \u0111\u1ECBnh k\u1EF3.",
+    "InfluentialFactors": [
+      "Cholesterol h\u01A1i cao"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-05-30T17:01:16.9169309+07:00"
+  },
+  {
+    "Id": "6ebb29a3-c762-422d-a260-75299be45205",
+    "Patient": {
+      "Id": "7a56ad20-a74c-4373-b6ab-2dc41e370db6",
+      "FullName": "V\u00F5 \u0110\u1EE9c Long",
+      "Age": 57,
+      "Gender": "Nam",
+      "CreatedAt": "2026-04-29T17:01:16.9169331+07:00"
+    },
+    "SystolicBloodPressure": 146,
+    "Cholesterol": 238,
+    "FastingBloodSugarHigh": true,
+    "EcgResult": "STT Abnormality",
+    "IsSmoker": true,
+    "ChestPainType": "Asymptomatic",
+    "MaxHeartRate": 122,
+    "ExerciseAngina": true,
+    "StDepression": 2.2,
+    "RiskProbability": 73,
+    "RiskLevel": 2,
+    "Recommendation": "N\u00EAn th\u0103m kh\u00E1m chuy\u00EAn khoa tim m\u1EA1ch \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n v\u00E0 ch\u1EA9n \u0111o\u00E1n ch\u00EDnh x\u00E1c.",
+    "InfluentialFactors": [
+      "Huy\u1EBFt \u00E1p cao",
+      "\u0110\u01B0\u1EDDng huy\u1EBFt cao",
+      "H\u00FAt thu\u1ED1c"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-04-29T17:01:16.9169332+07:00"
+  },
+  {
+    "Id": "26667460-5d94-4ffe-8ee1-77f0a534ffb1",
+    "Patient": {
+      "Id": "042f7342-6607-408c-b99d-3b8da02d3797",
+      "FullName": "Kh\u1EAFc Hi\u1EBFu",
+      "Age": 45,
+      "Gender": "Nam",
+      "CreatedAt": "2026-07-08T17:09:29.3104+07:00"
+    },
+    "SystolicBloodPressure": 120,
+    "Cholesterol": 190,
+    "FastingBloodSugarHigh": false,
+    "EcgResult": "Normal",
+    "IsSmoker": true,
+    "ChestPainType": "Typical Angina",
+    "MaxHeartRate": 120,
+    "ExerciseAngina": true,
+    "StDepression": 7,
+    "RiskProbability": 90,
+    "RiskLevel": 2,
+    "Recommendation": "N\u00EAn th\u0103m kh\u00E1m chuy\u00EAn khoa tim m\u1EA1ch s\u1EDBm \u0111\u1EC3 \u0111\u01B0\u1EE3c \u0111\u00E1nh gi\u00E1 l\u00E2m s\u00E0ng v\u00E0 t\u01B0 v\u1EA5n \u0111i\u1EC1u tr\u1ECB ph\u00F9 h\u1EE3p.",
+    "InfluentialFactors": [
+      "Tu\u1ED5i t\u1EEB 45-59",
+      "Huy\u1EBFt \u00E1p t\u00E2m thu b\u1EAFt \u0111\u1EA7u t\u0103ng",
+      "C\u00F3 ti\u1EC1n s\u1EED h\u00FAt thu\u1ED1c",
+      "\u0110au ng\u1EF1c \u0111i\u1EC3n h\u00ECnh",
+      "\u0110au th\u1EAFt ng\u1EF1c khi g\u1EAFng s\u1EE9c",
+      "ST depression t\u0103ng r\u00F5",
+      "Nam gi\u1EDBi tr\u00EAn 45 tu\u1ED5i"
+    ],
+    "RiskContributions": [],
+    "CreatedAt": "2026-07-08T17:09:29.3113117+07:00"
+  },
+  {
+    "Id": "641f8630-1e2f-4141-a873-9b8af4e5530e",
+    "Patient": {
+      "Id": "238d292e-4a6f-4395-89ff-f5d914f63ab5",
+      "FullName": "Kh\u1EAFc Hi\u1EBFu",
+      "Age": 19,
+      "Gender": "Nam",
+      "CreatedAt": "2026-07-08T17:32:05.5877679+07:00"
+    },
+    "SystolicBloodPressure": 120,
+    "Cholesterol": 190,
+    "FastingBloodSugarHigh": false,
+    "EcgResult": "STT Abnormality",
+    "IsSmoker": true,
+    "ChestPainType": "Typical Angina",
+    "MaxHeartRate": 100,
+    "ExerciseAngina": false,
+    "StDepression": 6,
+    "RiskProbability": 75,
+    "RiskLevel": 2,
+    "Recommendation": "N\u00EAn th\u0103m kh\u00E1m chuy\u00EAn khoa tim m\u1EA1ch s\u1EDBm \u0111\u1EC3 \u0111\u01B0\u1EE3c \u0111\u00E1nh gi\u00E1 l\u00E2m s\u00E0ng v\u00E0 t\u01B0 v\u1EA5n \u0111i\u1EC1u tr\u1ECB ph\u00F9 h\u1EE3p.",
+    "InfluentialFactors": [
+      "\u0110au ng\u1EF1c: \u0110au ng\u1EF1c \u0111i\u1EC3n h\u00ECnh",
+      "ST depression: 6.0",
+      "H\u00FAt thu\u1ED1c: C\u00F3 ti\u1EC1n s\u1EED h\u00FAt thu\u1ED1c",
+      "ECG: B\u1EA5t th\u01B0\u1EDDng ST-T",
+      "Nh\u1ECBp tim t\u1ED1i \u0111a: 100 bpm",
+      "Huy\u1EBFt \u00E1p: 120 mmHg"
+    ],
+    "RiskContributions": [
+      {
+        "Factor": "Tu\u1ED5i",
+        "Score": 0,
+        "MaxScore": 22,
+        "Level": "\u1ED4n \u0111\u1ECBnh",
+        "Description": "19 tu\u1ED5i",
+        "Percent": 0,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "Huy\u1EBFt \u00E1p",
+        "Score": 7,
+        "MaxScore": 20,
+        "Level": "T\u0103ng nh\u1EB9",
+        "Description": "120 mmHg",
+        "Percent": 35,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "Cholesterol",
+        "Score": 0,
+        "MaxScore": 17,
+        "Level": "\u1ED4n \u0111\u1ECBnh",
+        "Description": "190 mg/dL",
+        "Percent": 0,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "\u0110\u01B0\u1EDDng huy\u1EBFt",
+        "Score": 0,
+        "MaxScore": 9,
+        "Level": "\u1ED4n \u0111\u1ECBnh",
+        "Description": "\u2264 120 mg/dL",
+        "Percent": 0,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "ECG",
+        "Score": 10,
+        "MaxScore": 14,
+        "Level": "B\u1EA5t th\u01B0\u1EDDng",
+        "Description": "B\u1EA5t th\u01B0\u1EDDng ST-T",
+        "Percent": 71,
+        "CssClass": "risk-medium"
+      },
+      {
+        "Factor": "H\u00FAt thu\u1ED1c",
+        "Score": 12,
+        "MaxScore": 12,
+        "Level": "C\u00F3 nguy c\u01A1",
+        "Description": "C\u00F3 ti\u1EC1n s\u1EED h\u00FAt thu\u1ED1c",
+        "Percent": 100,
+        "CssClass": "risk-medium"
+      },
+      {
+        "Factor": "Gi\u1EDBi t\u00EDnh",
+        "Score": 0,
+        "MaxScore": 4,
+        "Level": "Trung t\u00EDnh",
+        "Description": "Nam",
+        "Percent": 0,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "\u0110au ng\u1EF1c",
+        "Score": 14,
+        "MaxScore": 16,
+        "Level": "Cao",
+        "Description": "\u0110au ng\u1EF1c \u0111i\u1EC3n h\u00ECnh",
+        "Percent": 88,
+        "CssClass": "risk-high"
+      },
+      {
+        "Factor": "Nh\u1ECBp tim t\u1ED1i \u0111a",
+        "Score": 10,
+        "MaxScore": 10,
+        "Level": "Th\u1EA5p",
+        "Description": "100 bpm",
+        "Percent": 100,
+        "CssClass": "risk-medium"
+      },
+      {
+        "Factor": "G\u1EAFng s\u1EE9c",
+        "Score": 0,
+        "MaxScore": 12,
+        "Level": "Kh\u00F4ng ghi nh\u1EADn",
+        "Description": "Kh\u00F4ng \u0111au khi g\u1EAFng s\u1EE9c",
+        "Percent": 0,
+        "CssClass": "risk-low"
+      },
+      {
+        "Factor": "ST depression",
+        "Score": 14,
+        "MaxScore": 14,
+        "Level": "T\u0103ng r\u00F5",
+        "Description": "6.0",
+        "Percent": 100,
+        "CssClass": "risk-high"
+      }
+    ],
+    "CreatedAt": "2026-07-08T17:32:05.5897934+07:00"
+  }
+]

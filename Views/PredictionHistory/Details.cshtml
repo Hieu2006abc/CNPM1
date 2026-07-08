@@ -1,0 +1,98 @@
+@using System.Text.Json
+@model RiskResultViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết đánh giá";
+    var contributions = Model.RiskContributions.Select(item => new
+    {
+        label = item.Factor,
+        value = item.Score,
+        percent = item.Percent,
+        color = item.CssClass == "risk-high" ? "#ef4444" : item.CssClass == "risk-medium" ? "#f59e0b" : "#10b981"
+    });
+}
+
+<section class="page-hero compact-hero">
+    <div class="container reveal-on-scroll">
+        <p class="eyebrow">Patient Detail</p>
+        <h1>@Model.FullName</h1>
+        <p>Lượt đánh giá ngày @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container result-layout enhanced-result">
+        <div class="result-summary glass-card reveal-on-scroll">
+            <div class="gauge-ring @Model.RiskCssClass animated-gauge" style="--risk-percent: @Model.RiskPercent">
+                <span class="count-up" data-count="@Model.RiskPercent">0</span>
+            </div>
+            <h2>@Model.RiskLevelText</h2>
+            <p>@Model.Recommendation</p>
+            <div class="mini-risk-grid">
+                <div>
+                    <span>Xác suất nguy cơ</span>
+                    <strong>@Model.RiskPercent%</strong>
+                </div>
+                <div>
+                    <span>Vùng an toàn</span>
+                    <strong>@Model.ProtectivePercent%</strong>
+                </div>
+            </div>
+            <a class="btn btn-outline-primary" asp-controller="PredictionHistory" asp-action="Index">Quay lại lịch sử</a>
+        </div>
+
+        <div class="result-details reveal-on-scroll">
+            <div class="content-panel glass-card">
+                <span class="panel-kicker">Explainable AI</span>
+                <h2>Diễn giải kết quả</h2>
+                <p>@Model.RiskNarrative</p>
+            </div>
+
+            <div class="chart-panel glass-card result-chart-panel">
+                <div>
+                    <span class="panel-kicker">Factor contribution</span>
+                    <h2>Biểu đồ đóng góp nguy cơ</h2>
+                </div>
+                <canvas id="resultFactorChart" width="680" height="300"></canvas>
+            </div>
+
+            <div class="content-panel glass-card">
+                <h2>Điểm đóng góp từng yếu tố</h2>
+                <div class="contribution-list">
+                    @foreach (var item in Model.RiskContributions.OrderByDescending(item => item.Score))
+                    {
+                        <div class="contribution-row">
+                            <div>
+                                <strong>@item.Factor</strong>
+                                <span>@item.Level - @item.Description</span>
+                            </div>
+                            <div class="contribution-meter">
+                                <span style="width: @item.Percent%"></span>
+                            </div>
+                            <b>@item.Score.ToString("0.#") điểm</b>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="content-panel glass-card">
+                <h2>Thông số bệnh nhân</h2>
+                <div class="info-grid">
+                    <span>Tuổi</span><strong>@Model.Age</strong>
+                    <span>Giới tính</span><strong>@Model.Gender</strong>
+                    <span>Huyết áp</span><strong>@Model.SystolicBloodPressure mmHg</strong>
+                    <span>Cholesterol</span><strong>@Model.Cholesterol mg/dL</strong>
+                    <span>Đường huyết</span><strong>@(Model.FastingBloodSugarHigh ? "> 120 mg/dL" : "≤ 120 mg/dL")</strong>
+                    <span>ECG</span><strong>@Model.EcgResult</strong>
+                    <span>Hút thuốc</span><strong>@(Model.IsSmoker ? "Có" : "Không")</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.heartCareResult = {
+        contributions: @Html.Raw(JsonSerializer.Serialize(contributions))
+    };
+</script>

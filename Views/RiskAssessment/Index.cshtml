@@ -1,0 +1,149 @@
+@model RiskInputViewModel
+
+@{
+    ViewData["Title"] = "Đánh giá nguy cơ";
+}
+
+<section class="page-hero compact-hero">
+    <div class="container reveal-on-scroll">
+        <p class="eyebrow">AI Risk Assessment</p>
+        <h1>Đánh giá nguy cơ mắc bệnh tim</h1>
+        <p>Nhập thông tin bệnh nhân để hệ thống mô phỏng phân tích nguy cơ bằng pipeline ANN.</p>
+    </div>
+</section>
+
+<section class="section-pad form-section">
+    <div class="container">
+        <div class="assessment-layout">
+            <aside class="assessment-side reveal-on-scroll">
+                <span class="panel-kicker">Clinical Input</span>
+                <h2>Bộ chỉ số sàng lọc</h2>
+                <p>
+                    Các trường được thiết kế theo nhóm thông tin bệnh nhân, chỉ số xét nghiệm và dấu hiệu tim mạch.
+                </p>
+                <ul class="clean-list">
+                    <li>Huyết áp tâm thu tính bằng mmHg.</li>
+                    <li>Cholesterol tính bằng mg/dL.</li>
+                    <li>ECG hỗ trợ nhận diện bất thường ST-T và phì đại thất trái.</li>
+                    <li>Kết quả demo không thay thế chẩn đoán y khoa.</li>
+                </ul>
+            </aside>
+
+            <form id="riskForm" class="form-card reveal-on-scroll" asp-controller="RiskAssessment" asp-action="Analyze" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-grid">
+                    <div class="field-span-2">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Age" class="form-label"></label>
+                        <input asp-for="Age" class="form-control" type="number" min="1" max="120" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Gender" class="form-label"></label>
+                        <select asp-for="Gender" class="form-select">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="SystolicBloodPressure" class="form-label"></label>
+                        <div class="input-group">
+                            <input asp-for="SystolicBloodPressure" class="form-control" type="number" min="70" max="260" />
+                            <span class="input-group-text">mmHg</span>
+                        </div>
+                        <span asp-validation-for="SystolicBloodPressure" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Cholesterol" class="form-label"></label>
+                        <div class="input-group">
+                            <input asp-for="Cholesterol" class="form-control" type="number" min="80" max="600" />
+                            <span class="input-group-text">mg/dL</span>
+                        </div>
+                        <span asp-validation-for="Cholesterol" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="FastingBloodSugarHigh" class="form-label"></label>
+                        <select asp-for="FastingBloodSugarHigh" class="form-select">
+                            <option value="false">≤ 120 mg/dL</option>
+                            <option value="true">&gt; 120 mg/dL</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label asp-for="EcgResult" class="form-label"></label>
+                        <select asp-for="EcgResult" class="form-select">
+                            <option value="Normal">Bình thường</option>
+                            <option value="STT Abnormality">Bất thường ST-T</option>
+                            <option value="Left Ventricular Hypertrophy">Phì đại thất trái</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label asp-for="IsSmoker" class="form-label"></label>
+                        <select asp-for="IsSmoker" class="form-select">
+                            <option value="false">Không</option>
+                            <option value="true">Có</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label asp-for="ChestPainType" class="form-label"></label>
+                        <select asp-for="ChestPainType" class="form-select">
+                            <option value="None">Không ghi nhận</option>
+                            <option value="Typical Angina">Đau ngực điển hình</option>
+                            <option value="Atypical Angina">Đau ngực không điển hình</option>
+                            <option value="Non-anginal Pain">Đau không do thắt ngực</option>
+                            <option value="Asymptomatic">Không triệu chứng rõ</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label asp-for="MaxHeartRate" class="form-label"></label>
+                        <input asp-for="MaxHeartRate" class="form-control" type="number" min="60" max="230" placeholder="Tùy chọn" />
+                        <span asp-validation-for="MaxHeartRate" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ExerciseAngina" class="form-label"></label>
+                        <select asp-for="ExerciseAngina" class="form-select">
+                            <option value="false">Không</option>
+                            <option value="true">Có</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label asp-for="StDepression" class="form-label"></label>
+                        <input asp-for="StDepression" class="form-control" type="number" min="0" max="8" step="0.1" placeholder="Tùy chọn" />
+                        <span asp-validation-for="StDepression" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100 mt-4" type="submit">Phân tích nguy cơ bằng AI</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div id="analysisOverlay" class="analysis-overlay" aria-hidden="true">
+    <div class="analysis-box">
+        <div class="pulse-loader"></div>
+        <strong>AI đang phân tích dữ liệu sức khỏe...</strong>
+        <span>Đang tổng hợp chỉ số và mô phỏng xác suất nguy cơ.</span>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

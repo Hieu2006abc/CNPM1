@@ -1,0 +1,66 @@
+-- HeartCare AI database reference
+-- DB.txt was empty, so this schema is used as the contract for the MVC models/controllers.
+-- The demo app stores data in App_Data/predictions.json to avoid external package/setup errors.
+-- These tables can be created later in SQL Server or SQLite with matching model fields.
+
+CREATE TABLE Patients (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    FullName NVARCHAR(120) NOT NULL,
+    Age INT NOT NULL,
+    Gender NVARCHAR(20) NOT NULL,
+    CreatedAt DATETIME2 NOT NULL
+);
+
+CREATE TABLE Predictions (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    PatientId UNIQUEIDENTIFIER NOT NULL,
+    SystolicBloodPressure INT NOT NULL,
+    Cholesterol INT NOT NULL,
+    FastingBloodSugarHigh BIT NOT NULL,
+    EcgResult NVARCHAR(80) NOT NULL,
+    IsSmoker BIT NOT NULL,
+    ChestPainType NVARCHAR(80) NULL,
+    MaxHeartRate INT NULL,
+    ExerciseAngina BIT NOT NULL,
+    StDepression FLOAT NULL,
+    RiskProbability FLOAT NOT NULL,
+    RiskLevel NVARCHAR(20) NOT NULL,
+    Recommendation NVARCHAR(500) NOT NULL,
+    CreatedAt DATETIME2 NOT NULL,
+    CONSTRAINT FK_Predictions_Patients FOREIGN KEY (PatientId) REFERENCES Patients(Id)
+);
+
+CREATE TABLE PredictionFactors (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    PredictionId UNIQUEIDENTIFIER NOT NULL,
+    FactorName NVARCHAR(160) NOT NULL,
+    Score FLOAT NOT NULL DEFAULT 0,
+    MaxScore FLOAT NOT NULL DEFAULT 0,
+    Level NVARCHAR(80) NULL,
+    Description NVARCHAR(255) NULL,
+    CONSTRAINT FK_PredictionFactors_Predictions FOREIGN KEY (PredictionId) REFERENCES Predictions(Id)
+);
+
+CREATE TABLE ModelMetrics (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    MetricName NVARCHAR(80) NOT NULL,
+    MetricValue FLOAT NOT NULL,
+    Description NVARCHAR(255) NULL
+);
+
+CREATE TABLE WebsiteReviews (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ReviewerName NVARCHAR(120) NOT NULL,
+    Rating INT NOT NULL,
+    Message NVARCHAR(500) NOT NULL,
+    CreatedAt DATETIME2 NOT NULL
+);
+
+CREATE TABLE DemoArticles (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(180) NOT NULL,
+    Category NVARCHAR(80) NOT NULL,
+    Summary NVARCHAR(500) NOT NULL,
+    Slug NVARCHAR(160) NOT NULL,
+    CreatedAt DATETIME2 NOT NULL
+);

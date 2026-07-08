@@ -1,0 +1,151 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<section class="hero-section" style="background-image: linear-gradient(90deg, rgba(4, 31, 46, .92) 0%, rgba(4, 31, 46, .78) 42%, rgba(4, 31, 46, .18) 100%), url('/images/heartcare-hero.png');">
+    <div class="container hero-content reveal-on-scroll">
+        <p class="eyebrow">AI Health Dashboard</p>
+        <h1>HeartCare AI</h1>
+        <p class="hero-copy">
+            Hệ thống mô phỏng mạng nơ-ron nhân tạo ANN để phân tích chỉ số sức khỏe,
+            giải thích yếu tố nguy cơ và hỗ trợ sàng lọc bệnh tim mạch theo giao diện dashboard hiện đại.
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" asp-controller="RiskAssessment" asp-action="Index">Bắt đầu đánh giá</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="Dashboard" asp-action="Index">Xem dashboard</a>
+        </div>
+        <div class="hero-mini-stats">
+            <span><strong class="count-up" data-count="11">0</strong> biến phân tích</span>
+            <span><strong class="count-up" data-count="3">0</strong> mức nguy cơ</span>
+            <span><strong class="count-up" data-count="10">0</strong> biểu đồ demo</span>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad stat-strip">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <article class="metric-card glass-card reveal-on-scroll">
+                    <span class="metric-kicker">ANN</span>
+                    <strong>11 chỉ số đầu vào</strong>
+                    <p>Tuổi, giới tính, huyết áp, cholesterol, đường huyết, ECG, hút thuốc và biến nâng cao.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="metric-card glass-card reveal-on-scroll">
+                    <span class="metric-kicker">Explainable AI</span>
+                    <strong>Điểm đóng góp chi tiết</strong>
+                    <p>Kết quả không chỉ có phần trăm, mà còn giải thích yếu tố nào làm tăng nguy cơ.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="metric-card glass-card reveal-on-scroll">
+                    <span class="metric-kicker">Dashboard</span>
+                    <strong>10+ lát cắt thống kê</strong>
+                    <p>Biểu đồ theo tuổi, giới tính, ECG, hút thuốc, đường huyết và xu hướng xác suất.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="section-heading reveal-on-scroll">
+            <p class="eyebrow">Quy trình</p>
+            <h2>Từ dữ liệu lâm sàng đến kết quả có giải thích</h2>
+        </div>
+        <div class="workflow-grid">
+            <div class="workflow-step reveal-on-scroll">
+                <span>01</span>
+                <h3>Nhập thông tin</h3>
+                <p>Ghi nhận thông số sức khỏe và thói quen sinh hoạt của bệnh nhân.</p>
+            </div>
+            <div class="workflow-step reveal-on-scroll">
+                <span>02</span>
+                <h3>Chấm điểm nguy cơ</h3>
+                <p>Mô phỏng pipeline ANN bằng các trọng số lâm sàng dễ giải thích.</p>
+            </div>
+            <div class="workflow-step reveal-on-scroll">
+                <span>03</span>
+                <h3>Phân tích chi tiết</h3>
+                <p>Hiển thị xác suất, mức nguy cơ, biểu đồ đóng góp và khuyến nghị.</p>
+            </div>
+            <div class="workflow-step reveal-on-scroll">
+                <span>04</span>
+                <h3>Theo dõi dashboard</h3>
+                <p>Tổng hợp dữ liệu demo theo nhóm tuổi, huyết áp, cholesterol và lịch sử.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad article-section">
+    <div class="container">
+        <div class="section-heading reveal-on-scroll">
+            <p class="eyebrow">Bài báo demo</p>
+            <h2>Nội dung giới thiệu có thể dùng cho báo cáo</h2>
+        </div>
+        <div class="article-grid">
+            <article class="article-card reveal-on-scroll">
+                <span>AI trong y tế</span>
+                <h3>Ứng dụng ANN trong sàng lọc nguy cơ tim mạch</h3>
+                <p>Mô hình ANN phù hợp với bài toán phân loại vì có khả năng học quan hệ phi tuyến giữa nhiều chỉ số sức khỏe.</p>
+                <a asp-controller="ModelInfo" asp-action="Index">Đọc phần mô hình</a>
+            </article>
+            <article class="article-card reveal-on-scroll">
+                <span>Thiết kế hệ thống</span>
+                <h3>Từ form bệnh nhân đến dashboard phân tích</h3>
+                <p>Website được tổ chức theo MVC, tách riêng controller, model, viewmodel và lớp xử lý dự đoán để dễ nâng cấp.</p>
+                <a asp-controller="Dashboard" asp-action="Index">Xem thống kê</a>
+            </article>
+            <article class="article-card reveal-on-scroll">
+                <span>Demo sản phẩm</span>
+                <h3>Giao diện medical dashboard cho thuyết trình</h3>
+                <p>Các màn hình được tối ưu để giảng viên có thể theo dõi luồng đánh giá, kết quả và thống kê chỉ trong một lần demo.</p>
+                <a asp-controller="RiskAssessment" asp-action="Index">Thử đánh giá</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad review-section">
+    <div class="container">
+        <div class="review-layout">
+            <div class="content-panel reveal-on-scroll">
+                <span class="panel-kicker">Đánh giá website</span>
+                <h2>Người dùng nói gì về HeartCare AI?</h2>
+                <p>Gửi nhận xét về trải nghiệm sử dụng, độ rõ ràng của kết quả và mức độ phù hợp khi dùng cho báo cáo.</p>
+                <form id="reviewForm" class="review-form">
+                    <input class="form-control" name="reviewName" type="text" placeholder="Tên người đánh giá" required />
+                    <select class="form-select" name="reviewRating" required>
+                        <option value="5">5 sao - Rất tốt</option>
+                        <option value="4">4 sao - Tốt</option>
+                        <option value="3">3 sao - Cần cải thiện</option>
+                    </select>
+                    <textarea class="form-control" name="reviewMessage" rows="4" placeholder="Nhận xét về giao diện, tốc độ hoặc tính dễ dùng" required></textarea>
+                    <button class="btn btn-primary" type="submit">Gửi đánh giá</button>
+                </form>
+            </div>
+
+            <div id="reviewList" class="review-list reveal-on-scroll">
+                <article class="review-card">
+                    <strong>Nguyễn Minh An</strong>
+                    <span>5 sao</span>
+                    <p>Giao diện sáng, dễ thuyết trình và phần dashboard nhìn rất chuyên nghiệp.</p>
+                </article>
+                <article class="review-card">
+                    <strong>Trần Hoài Thu</strong>
+                    <span>5 sao</span>
+                    <p>Kết quả có giải thích từng yếu tố nên dễ hiểu hơn một form dự đoán thông thường.</p>
+                </article>
+                <article class="review-card">
+                    <strong>Lê Quốc Bảo</strong>
+                    <span>4 sao</span>
+                    <p>Phần biểu đồ và lịch sử đánh giá phù hợp để trình bày trong báo cáo môn học.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

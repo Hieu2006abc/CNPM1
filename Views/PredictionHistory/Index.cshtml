@@ -1,0 +1,93 @@
+@model PredictionHistoryViewModel
+
+@{
+    ViewData["Title"] = "Lịch sử đánh giá";
+}
+
+<section class="page-hero compact-hero">
+    <div class="container reveal-on-scroll">
+        <p class="eyebrow">Prediction History</p>
+        <h1>Lịch sử đánh giá bệnh nhân</h1>
+        <p>Tìm kiếm, lọc theo mức nguy cơ và xem lại chi tiết từng lượt phân tích.</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <form class="filter-bar reveal-on-scroll" method="get" asp-controller="PredictionHistory" asp-action="Index">
+            <input class="form-control" type="search" name="search" value="@Model.Search" placeholder="Tìm theo họ tên bệnh nhân" />
+            <select class="form-select" name="riskLevel">
+                <option value="">Tất cả mức nguy cơ</option>
+                <option value="Low" selected="@(Model.RiskLevel == RiskLevel.Low)">Nguy cơ thấp</option>
+                <option value="Medium" selected="@(Model.RiskLevel == RiskLevel.Medium)">Nguy cơ trung bình</option>
+                <option value="High" selected="@(Model.RiskLevel == RiskLevel.High)">Nguy cơ cao</option>
+            </select>
+            <button class="btn btn-primary" type="submit">Lọc</button>
+        </form>
+
+        <div class="table-panel glass-card reveal-on-scroll skeleton-table" data-skeleton-table>
+            <div class="skeleton-list" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="table-responsive real-table">
+                <table class="table align-middle history-table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Giới tính</th>
+                            <th>Huyết áp</th>
+                            <th>Cholesterol</th>
+                            <th>Kết quả</th>
+                            <th>Xác suất</th>
+                            <th>Ngày đánh giá</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var index = 0; index < Model.Predictions.Count; index++)
+                        {
+                            var item = Model.Predictions[index];
+                            <tr>
+                                <td>@(index + 1)</td>
+                                <td>@item.Patient.FullName</td>
+                                <td>@item.Patient.Age</td>
+                                <td>@item.Patient.Gender</td>
+                                <td>@item.SystolicBloodPressure mmHg</td>
+                                <td>@item.Cholesterol mg/dL</td>
+                                <td><span class="risk-pill @RiskClass(item.RiskLevel)">@RiskLabel(item.RiskLevel)</span></td>
+                                <td>@Math.Round(item.RiskProbability)%</td>
+                                <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" asp-controller="PredictionHistory" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@functions {
+    private static string RiskLabel(RiskLevel level) => level switch
+    {
+        RiskLevel.Low => "Nguy cơ thấp",
+        RiskLevel.Medium => "Nguy cơ trung bình",
+        RiskLevel.High => "Nguy cơ cao",
+        _ => "N/A"
+    };
+
+    private static string RiskClass(RiskLevel level) => level switch
+    {
+        RiskLevel.Low => "risk-low",
+        RiskLevel.Medium => "risk-medium",
+        RiskLevel.High => "risk-high",
+        _ => "risk-low"
+    };
+}

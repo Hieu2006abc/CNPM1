@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HeartCare AI</title>
+    <script>
+        (function () {
+            var theme = localStorage.getItem("heartcare-theme") || "light";
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HeartCareAI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div id="appPreloader" class="app-preloader" aria-live="polite">
+        <div class="preloader-card">
+            <span class="brand-mark preloader-logo">HC</span>
+            <strong>HeartCare AI</strong>
+            <span>Đang tải hệ thống phân tích...</span>
+            <div class="preloader-bar">
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
+    <div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="true"></div>
+
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    }
+    <header>
+        <nav class="navbar navbar-expand-lg app-navbar fixed-top">
+            <div class="container">
+                <a class="navbar-brand brand-lockup" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="brand-mark">HC</span>
+                    <span>HeartCare AI</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "RiskAssessment" ? "active" : "")" asp-area="" asp-controller="RiskAssessment" asp-action="Index">Đánh giá nguy cơ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Dashboard" ? "active" : "")" asp-area="" asp-controller="Dashboard" asp-action="Index">Thống kê</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "ModelInfo" ? "active" : "")" asp-area="" asp-controller="ModelInfo" asp-action="Index">Mô hình ANN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "PredictionHistory" ? "active" : "")" asp-area="" asp-controller="PredictionHistory" asp-action="Index">Lịch sử</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(currentController == "Home" && currentAction == "About" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="About">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Đổi chế độ sáng tối">
+                                <span class="theme-toggle-dot"></span>
+                                <span class="theme-toggle-text">Tối</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="app-main page-shell">
+        @RenderBody()
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <span>&copy; 2026 HeartCare AI</span>
+            <span>Kết quả chỉ mang tính tham khảo, không thay thế chẩn đoán của bác sĩ.</span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,234 @@
+@using System.Text.Json
+@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Thống kê";
+    var riskDistribution = Model.RiskDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var ageDistribution = Model.AgeDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var cholesterolByAge = Model.CholesterolByAge.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var bloodPressureByAge = Model.BloodPressureByAge.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var genderDistribution = Model.GenderDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var ecgDistribution = Model.EcgDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var smokingDistribution = Model.SmokingDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var bloodSugarDistribution = Model.BloodSugarDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var riskTrend = Model.RiskTrend.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+    var probabilityDistribution = Model.ProbabilityDistribution.Select(item => new { label = item.Label, value = item.Value, color = item.Color });
+}
+
+<section class="page-hero compact-hero dashboard-hero">
+    <div class="container reveal-on-scroll">
+        <p class="eyebrow">Analytics Dashboard</p>
+        <h1>Thống kê đánh giá nguy cơ</h1>
+        <p>Tổng hợp dữ liệu bệnh nhân demo theo mức nguy cơ, nhóm tuổi, giới tính, ECG, đường huyết và xu hướng xác suất.</p>
+    </div>
+</section>
+
+<section class="section-pad dashboard-section">
+    <div class="container">
+        <div class="dashboard-stats">
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Tổng lượt</span>
+                <strong class="count-up" data-count="@Model.TotalAssessments">0</strong>
+                <p>Lượt đánh giá đã lưu.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Nguy cơ cao</span>
+                <strong class="count-up" data-count="@Model.HighRiskCount">0</strong>
+                <p>@Model.HighRiskRate% tổng lượt đánh giá.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Xác suất TB</span>
+                <strong><span class="count-up" data-count="@Model.AverageRiskProbability">0</span>%</strong>
+                <p>Nguy cơ trung bình của các ca.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">ECG bất thường</span>
+                <strong class="count-up" data-count="@Model.AbnormalEcgCount">0</strong>
+                <p>Số ca có dấu hiệu ECG cần theo dõi.</p>
+            </article>
+        </div>
+
+        <div class="dashboard-stats compact-stats">
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Huyết áp TB</span>
+                <strong><span class="count-up" data-count="@Model.AverageSystolicBloodPressure">0</span> mmHg</strong>
+                <p>Tâm thu trung bình.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Cholesterol TB</span>
+                <strong><span class="count-up" data-count="@Model.AverageCholesterol">0</span></strong>
+                <p>mg/dL trung bình.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Hút thuốc</span>
+                <strong class="count-up" data-count="@Model.SmokerCount">0</strong>
+                <p>Ca có tiền sử hút thuốc.</p>
+            </article>
+            <article class="metric-card glass-card reveal-on-scroll">
+                <span class="metric-kicker">Đường huyết cao</span>
+                <strong class="count-up" data-count="@Model.HighBloodSugarCount">0</strong>
+                <p>Ca > 120 mg/dL.</p>
+            </article>
+        </div>
+
+        <div class="chart-grid dashboard-chart-grid">
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Risk ratio</span>
+                    <h2>Tỷ lệ nguy cơ</h2>
+                </div>
+                <canvas id="riskDonutChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Risk trend</span>
+                    <h2>Xu hướng xác suất theo ngày</h2>
+                </div>
+                <canvas id="riskTrendChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Age group</span>
+                    <h2>Phân bố theo nhóm tuổi</h2>
+                </div>
+                <canvas id="ageBarChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Probability</span>
+                    <h2>Phân bố xác suất</h2>
+                </div>
+                <canvas id="probabilityBarChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Cholesterol</span>
+                    <h2>Cholesterol trung bình</h2>
+                </div>
+                <canvas id="cholesterolBarChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Blood pressure</span>
+                    <h2>Huyết áp theo nhóm tuổi</h2>
+                </div>
+                <canvas id="bloodPressureLineChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Gender</span>
+                    <h2>Phân bố giới tính</h2>
+                </div>
+                <canvas id="genderDonutChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">ECG</span>
+                    <h2>Kết quả điện tâm đồ</h2>
+                </div>
+                <canvas id="ecgBarChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Smoking</span>
+                    <h2>Tiền sử hút thuốc</h2>
+                </div>
+                <canvas id="smokingDonutChart" width="420" height="300"></canvas>
+            </article>
+
+            <article class="chart-panel glass-card reveal-on-scroll">
+                <div>
+                    <span class="panel-kicker">Blood sugar</span>
+                    <h2>Đường huyết lúc đói</h2>
+                </div>
+                <canvas id="bloodSugarDonutChart" width="420" height="300"></canvas>
+            </article>
+        </div>
+
+        <div class="table-panel glass-card reveal-on-scroll skeleton-table" data-skeleton-table>
+            <div class="table-header">
+                <div>
+                    <span class="panel-kicker">Recent</span>
+                    <h2>Lượt đánh giá gần đây</h2>
+                </div>
+                <a class="btn btn-outline-primary" asp-controller="PredictionHistory" asp-action="Index">Xem lịch sử</a>
+            </div>
+
+            <div class="skeleton-list" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="table-responsive real-table">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Bệnh nhân</th>
+                            <th>Tuổi</th>
+                            <th>Huyết áp</th>
+                            <th>Cholesterol</th>
+                            <th>Nguy cơ</th>
+                            <th>Ngày đánh giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RecentPredictions)
+                        {
+                            <tr>
+                                <td>@item.Patient.FullName</td>
+                                <td>@item.Patient.Age</td>
+                                <td>@item.SystolicBloodPressure mmHg</td>
+                                <td>@item.Cholesterol mg/dL</td>
+                                <td><span class="risk-pill @RiskClass(item.RiskLevel)">@RiskLabel(item.RiskLevel) - @Math.Round(item.RiskProbability)%</span></td>
+                                <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.heartCareDashboard = {
+        riskDistribution: @Html.Raw(JsonSerializer.Serialize(riskDistribution)),
+        ageDistribution: @Html.Raw(JsonSerializer.Serialize(ageDistribution)),
+        cholesterolByAge: @Html.Raw(JsonSerializer.Serialize(cholesterolByAge)),
+        bloodPressureByAge: @Html.Raw(JsonSerializer.Serialize(bloodPressureByAge)),
+        genderDistribution: @Html.Raw(JsonSerializer.Serialize(genderDistribution)),
+        ecgDistribution: @Html.Raw(JsonSerializer.Serialize(ecgDistribution)),
+        smokingDistribution: @Html.Raw(JsonSerializer.Serialize(smokingDistribution)),
+        bloodSugarDistribution: @Html.Raw(JsonSerializer.Serialize(bloodSugarDistribution)),
+        riskTrend: @Html.Raw(JsonSerializer.Serialize(riskTrend)),
+        probabilityDistribution: @Html.Raw(JsonSerializer.Serialize(probabilityDistribution))
+    };
+</script>
+
+@functions {
+    private static string RiskLabel(RiskLevel level) => level switch
+    {
+        RiskLevel.Low => "Thấp",
+        RiskLevel.Medium => "Trung bình",
+        RiskLevel.High => "Cao",
+        _ => "N/A"
+    };
+
+    private static string RiskClass(RiskLevel level) => level switch
+    {
+        RiskLevel.Low => "risk-low",
+        RiskLevel.Medium => "risk-medium",
+        RiskLevel.High => "risk-high",
+        _ => "risk-low"
+    };
+}

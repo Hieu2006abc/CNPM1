@@ -1,0 +1,77 @@
+@model IReadOnlyList<ModelMetric>
+
+@{
+    ViewData["Title"] = "Mô hình ANN";
+}
+
+<section class="page-hero compact-hero">
+    <div class="container reveal-on-scroll">
+        <p class="eyebrow">Artificial Neural Network</p>
+        <h1>Mô hình ANN đánh giá nguy cơ bệnh tim</h1>
+        <p>Trang mô tả phần AI để dùng trực tiếp trong báo cáo và thuyết trình demo.</p>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="content-panel reveal-on-scroll">
+                    <span class="panel-kicker">Dataset</span>
+                    <h2>Heart Disease Dataset</h2>
+                    <p>
+                        Dataset tham khảo từ Kaggle gồm các biến đầu vào như tuổi, giới tính, loại đau ngực,
+                        huyết áp nghỉ, cholesterol, đường huyết lúc đói, ECG, nhịp tim tối đa và chỉ số ST.
+                    </p>
+                    <ul class="clean-list">
+                        <li>Target được chuyển về nhị phân: 0 là nguy cơ thấp, 1 là nguy cơ cao.</li>
+                        <li>Dữ liệu được chia train/test theo tỷ lệ 80/20.</li>
+                        <li>Các biến số được chuẩn hóa bằng StandardScaler trước khi huấn luyện.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="content-panel reveal-on-scroll">
+                    <span class="panel-kicker">Architecture</span>
+                    <h2>Kiến trúc ANN đề xuất</h2>
+                    <div class="ann-stack">
+                        <span>Input layer: biến sức khỏe</span>
+                        <span>Dense 32 - ReLU</span>
+                        <span>Dropout 0.2</span>
+                        <span>Dense 16 - ReLU</span>
+                        <span>Output 1 - Sigmoid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pipeline reveal-on-scroll">
+            <span>Dữ liệu đầu vào</span>
+            <span>Tiền xử lý</span>
+            <span>Huấn luyện ANN</span>
+            <span>Đánh giá mô hình</span>
+            <span>Dự đoán trên website</span>
+        </div>
+
+        <div class="metrics-grid">
+            @foreach (var metric in Model)
+            {
+                <article class="metric-card reveal-on-scroll">
+                    <span class="metric-kicker">@metric.MetricName</span>
+                    <strong>@metric.MetricValue.ToString("P0")</strong>
+                    <p>@metric.Description</p>
+                </article>
+            }
+        </div>
+
+        <div class="content-panel reveal-on-scroll">
+            <h2>Ghi chú tích hợp model thật</h2>
+            <p>
+                Phiên bản MVC hiện dùng service mô phỏng để demo luồng nghiệp vụ. Khi có model ANN thật,
+                thay `RuleBasedRiskPredictionService` bằng service gọi Python/FastAPI hoặc thư viện inference,
+                sau đó trả về `RiskProbability`, `RiskLevel`, yếu tố ảnh hưởng và khuyến nghị.
+            </p>
+        </div>
+    </div>
+</section>
